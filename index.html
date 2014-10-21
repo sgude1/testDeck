@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Test deck</title>
+  <title>Developing Data Products Assignment</title>
   <meta charset="utf-8">
-  <meta name="description" content="Test deck">
-  <meta name="author" content="">
+  <meta name="description" content="Developing Data Products Assignment">
+  <meta name="author" content="sgude">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -32,9 +32,9 @@
     <!-- LOGO SLIDE -->
         <slide class="title-slide segue nobackground">
   <hgroup class="auto-fadein">
-    <h1>Test deck</h1>
-    <h2></h2>
-    <p><br/></p>
+    <h1>Developing Data Products Assignment</h1>
+    <h2>Finding Prime Numbers</h2>
+    <p>sgude<br/></p>
   </hgroup>
   <article></article>  
 </slide>
@@ -43,14 +43,13 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Read-And-Delete</h2>
+    <h2>Introduction</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Edit YAML front matter</li>
-<li>Write using R Markdown</li>
-<li>Use an empty line followed by three dashes to separate slides!</li>
-</ol>
+    <p>-This application accepts an input from a user and determines the closest prime number to the number submitted.<br>
+-It accepts positive values from 1 to 100,000<br>
+-When evaluating the closest number it considers absolute value so the value returned may be higher or lower than the submission.<br>
+-In the scenario where a user inputs a value that is equidistant between two primes, both are returned, for example 4 returns 3 and 5.</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -58,13 +57,40 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 2</h2>
+    <h2>How to Use</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">plot(1:10, 1:10)
-</code></pre>
+    <p>-Using the application is straightforward and should be intuitive for most users.  <br/><br/>
+<b>Steps to Use</b><br/><br/>
+1. Enter the number you would like to evaluate in the text box (note the number must be between 1 and 100,000 as noted in the application)  <br/>
+2. Once you enter the number select the blue button titled &quot;Find my Prime!&quot;<br/>
+3. The application will return two values upon submission:  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. It will redisplay the value you entered in the section titled &quot;The closest prime number to your entry of:&quot;  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. It will then display the result in the section titled: &quot;is the prime number(s)&quot;</p>
 
-<p><img src="assets/fig/unnamed-chunk-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How it Works</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>-The code starts by generating a data table with values from 1 to 100,000.<br/>
+-Next it evaluates whether each value in the table is a prime number and subsets the data to a list of only those numbers.<br/>
+-Once it has that subset, it creates a new column which is equal to the absolute value of the prime numbers less the number the user provided.<br/>
+-It returns the number(s) where the above calculation is minimized.<br/><br/>
+The function in R code is:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prime &lt;- function(number){<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x &lt;- data.table(a=1:100000,b=1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x$b&lt;-isprime(x$a)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x &lt;- subset(x, b==1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x$c&lt;-abs(x$a-number)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;low&lt;-min(x$c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;guess &lt;- subset(x, c==low)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xx&lt;-guess$a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(xx)}</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -76,14 +102,20 @@
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Read-And-Delete'>
+        data-slide=1 title='Introduction'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Slide 2'>
+        data-slide=2 title='How to Use'>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='How it Works'>
+         3
       </a>
     </li>
   </ul>
